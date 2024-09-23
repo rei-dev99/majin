@@ -3,25 +3,25 @@ import React from "react";
 
 function Header() {
   return (
-    <header className="flex p-5 justify-between items-center border-b-2 bg-yellow-200">
+    <header className="flex p-5 justify-between items-center bg-gradient-to-r from-yellow-500 to-purple-600">
       <div>
-        <h1 className="text-2xl font-bold text-gray-800">
-          <Link href={"/"}>54期紹介クイズ</Link>
+        <h1 className="text-3xl font-extrabold text-white">
+          <Link href={"/"}>魔神の挑戦状</Link>
         </h1>
       </div>
       <div>
         <nav className="flex gap-4">
           <Link
             href={"/members/"}
-            className="text-gray-700 hover:text-gray-900"
+            className="text-white hover:text-yellow-300 transition duration-300"
           >
-            クイズ
+            勇者のクイズ
           </Link>
           <Link
             href={"/about/"}
-            className="text-gray-700 hover:text-gray-900"
+            className="text-white hover:text-yellow-300 transition duration-300"
           >
-            紹介
+            魔神の紹介
           </Link>
         </nav>
       </div>

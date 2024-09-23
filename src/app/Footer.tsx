@@ -2,9 +2,9 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="p-4 border-t-2 bg-yellow-200">
+    <footer className="p-4 bg-gradient-to-r from-yellow-500 to-purple-600">
       <div>
-        <p className="text-center text-gray-700">©2024 reicode</p>
+        <p className="text-center text-white">©2024 魔神の王国 - reicode</p>
       </div>
     </footer>
   );

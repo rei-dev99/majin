@@ -18,9 +18,9 @@ export default function MembersPage() {
   }, []);
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        メンバーのクイズを選んでください
+    <div className="min-h-screen p-6 bg-gradient-to-b from-purple-200 to-purple-400">
+      <h1 className="text-4xl font-bold text-center text-white mb-6">
+        勇者たちのクイズを選んでください
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {members.map((member) => (
@@ -37,11 +37,13 @@ export default function MembersPage() {
               height={128} // 画像の高さ
             />
             {/* 名前表示 */}
-            <h2 className="text-xl font-semibold mb-4">{member.name}</h2>
+            <h2 className="text-2xl font-semibold text-purple-700 mb-4">
+              {member.name}
+            </h2>
             {/* クイズに挑戦ボタン */}
             <Link
               href={`/members/${member.id}`}
-              className="text-white bg-blue-500 hover:bg-blue-600 rounded px-4 py-2 inline-block"
+              className="text-white bg-blue-600 hover:bg-blue-700 rounded px-4 py-2 inline-block"
             >
               クイズに挑戦
             </Link>
