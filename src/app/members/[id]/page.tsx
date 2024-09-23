@@ -5,7 +5,9 @@ import { useParams } from "next/navigation";
 import { Members } from "@/types";
 
 export default function QuizPage() {
-  const { id } = useParams();
+  // useParamsを明示的に型キャスト
+  const { id } = useParams() as { id: string }; // ここで型キャストを追加
+
   const [member, setMember] = useState<Members | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -13,9 +15,16 @@ export default function QuizPage() {
   useEffect(() => {
     if (id) {
       const fetchMember = async () => {
-        const response = await fetch(`/api/members/${id}`);
-        const data = await response.json();
-        setMember(data);
+        try {
+          const response = await fetch(`/api/members/${id}`);
+          if (!response.ok) {
+            throw new Error("Member data could not be fetched");
+          }
+          const data = await response.json();
+          setMember(data);
+        } catch (error) {
+          console.error(error);
+        }
       };
       fetchMember();
     }
