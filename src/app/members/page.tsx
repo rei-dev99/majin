@@ -6,16 +6,17 @@ import { useEffect, useState } from "react";
 import { Members } from "@/types";
 
 export default function MembersPage() {
+  // TypeScriptのジェネリクスを使って、membersの状態がMembers型の配列であることを指定、([]):useStateの初期値として空の配列を設定
   const [members, setMembers] = useState<Members[]>([]);
 
   useEffect(() => {
-    async function fetchMembers() {
+    const fetchMembers = async () => { // asyncとfetchを使用することで非同期処理を実現している。
       const response = await fetch("/api/members");
       const data = await response.json();
-      setMembers(data);
+      setMembers(data)
     }
     fetchMembers();
-  }, []);
+  },[])
 
   return (
     <div className="min-h-screen p-6 bg-gradient-to-b from-purple-200 to-purple-400">
