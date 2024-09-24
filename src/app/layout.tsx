@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "魔神",
-  description: "メンバーの秘密：魔神の挑戦状",
+  title: "魔神の挑戦状",
+  description: "このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームだぞ。",
 };
 
 export default function RootLayout({
