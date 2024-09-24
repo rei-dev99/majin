@@ -20,7 +20,7 @@ export default function Home() {
         />
       </div>
       <p className=" text-base md:text-xl text-center text-gray-100 mb-6">
-        このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームだぞ。魔神の気まぐれ日記さ！
+        このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームだぞ。< br/>魔神の気まぐれ日記さ！
       </p>
       <div className="flex flex-col md:flex-row justify-around gap-4">
         <div className="bg-white p-4 rounded shadow-md w-full md:w-1/2">

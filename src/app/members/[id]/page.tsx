@@ -57,14 +57,6 @@ export default function QuizPage() {
     }
   };
 
-  //   const handleNextQuiz = () => {
-  // 次のクイズに遷移する処理（仮に次のIDがあると想定して）
-  //     router.push(`/members/${parseInt(id) + 1}`); // IDを+1して次のクイズへ
-  //     setShowNext(false); // 次へボタンを非表示
-  //     setSelectedAnswer(""); // 選択した答えをリセット
-  //     setIsCorrect(null); // 正誤判定をリセット
-  //   };
-
   return (
     <div className="min-h-screen p-6 bg-gradient-to-br from-purple-800 to-black text-white">
       <div className="max-w-full md:max-w-screen-sm mx-auto">
@@ -116,6 +108,14 @@ export default function QuizPage() {
           <div className="mt-6">
             <h2 className="text-xl font-bold">残念！不正解だ</h2>
             <p className="text-lg">もう一度リロードして考えてみよう！</p>
+            <div className="mt-4">
+              <button
+                onClick={() => window.location.reload()}
+                className="p-2 bg-blue-500 text-white rounded shadow-lg hover:bg-blue-600 transition duration-300"
+              >
+                もう一度答える
+              </button>
+            </div>
           </div>
         )}
 
@@ -125,13 +125,20 @@ export default function QuizPage() {
             <h2 className="text-xl font-bold">答えと解説</h2>
             <p className="text-lg mt-4">正解は: 「{member.answer}」</p>
             <p className="text-lg">{member.description}</p>
+            <div className="mt-4 text-right">
+              <a
+                href={`https://twitter.com/intent/tweet?url=https://majin-r821.vercel.app/&text=${encodeURIComponent(
+                  `魔神の挑戦状「${member.name}」のクイズをクリアしたぞ！\n#魔神クエスト\n`
+                )}`}
+                title="Xで共有する"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-blue-500 text-white rounded shadow-lg hover:bg-blue-600 transition duration-300"
+              >
+                Xで共有する
+              </a>
+            </div>
             <div className="text-center mt-6">
-              {/* <button
-              className="mt-6 p-3 bg-blue-500 text-white rounded shadow-lg hover:bg-blue-600 transition duration-300"
-              onClick={handleNextQuiz}
-            >
-              次へ進む
-            </button> */}
               <Link
                 href={"/members"}
                 className="p-3 bg-blue-500 text-white rounded shadow-lg hover:bg-blue-600 transition duration-300"
