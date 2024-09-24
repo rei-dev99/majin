@@ -1,20 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { Members } from "@/types";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+
+import { Members } from "@/types";
 
 export default function QuizPage() {
   // useParamsを明示的に型キャスト
   const { id } = useParams() as { id: string }; // ここで型キャストを追加
-
-  const [member, setMember] = useState<Members | null>(null);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const router = useRouter(); // 次へ行くためのルーディング
+  const [member, setMember] = useState<Members | null>(null); // memberの状態を管理。初期値はnullで、後でAPIから取得したデータが入る予定
+  const [selectedAnswer, setSelectedAnswer] = useState(""); // ユーザーが選択した答えを管理するための状態
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null); //答えが正しいかどうかを管理する状態で、初期値はnull
+  const [showNext, setShowNext] = useState(false); //次へボタンを表示、初期は非表示のためfalse
 
   useEffect(() => {
     if (id) {
+      // idが存在する場合のみ、非同期処理(api処理関連)
       const fetchMember = async () => {
         try {
           const response = await fetch(`/api/members/${id}`);
@@ -31,15 +34,24 @@ export default function QuizPage() {
     }
   }, [id]);
 
-  if (!id) {
-    return <p>Loading...</p>;
-  }
-
-  if (!member) return <p>Loading member data...</p>;
+  if (!id) return <div className="min-h-screen p-6 bg-gradient-to-br from-purple-800 to-black text-white text-4xl font-extrabold text-center">Loading...</div>;
+  if (!member) return <div className="min-h-screen p-6 bg-gradient-to-br from-purple-800 to-black text-white text-4xl font-extrabold text-center">Loading member data...</div>;
 
   const handleAnswer = (answer: string) => {
     setSelectedAnswer(answer);
-    setIsCorrect(answer === member.answer);
+    const correct = answer === member.answer;
+    setIsCorrect(correct);
+    if (correct) {
+      setShowNext(true); // 正解の場合に次へボタンを表示
+    }
+  };
+
+  const handleNextQuiz = () => {
+    // 次のクイズに遷移する処理（仮に次のIDがあると想定して）
+    router.push(`/members/${parseInt(id) + 1}`); // IDを+1して次のクイズへ
+    setShowNext(false); // 次へボタンを非表示
+    setSelectedAnswer(""); // 選択した答えをリセット
+    setIsCorrect(null); // 正誤判定をリセット
   };
 
   return (
@@ -64,6 +76,7 @@ export default function QuizPage() {
               key={index}
               className="p-4 bg-gray-900 rounded-lg shadow hover:bg-purple-600 transition duration-300 w-full text-left"
               onClick={() => handleAnswer(option)}
+              disabled={isCorrect !== null} // 答えを選んだ後は無効化
             >
               {option}
             </button>
@@ -85,10 +98,33 @@ export default function QuizPage() {
           {isCorrect ? "正解！" : "不正解..."}
         </p>
       )}
-      <div className="mt-6">
-        <h2 className="text-xl font-bold">答え</h2>
-        <p className="text-lg">{member.answer}</p>
-      </div>
+
+      {/* 不正解の場合のメッセージを表示 */}
+      {isCorrect === false && (
+        <div className="mt-6">
+          <h2 className="text-xl font-bold">残念！不正解だ</h2>
+          <p className="text-lg">もう一度リロードして考えてみよう！</p>
+        </div>
+      )}
+
+      {/* showNext が true の場合に次へボタンと解説を表示 */}
+      {showNext && (
+        <div className="mt-6">
+          <h2 className="text-xl font-bold">答えと解説</h2>
+          <p className="text-lg mb-4">正解は: {member.answer}</p>
+          <p className="text-lg">
+            {member.answer || "解説はない次へ行こうぜ！"}
+          </p>
+          <div className="text-center">
+            <button
+              className="mt-6 p-3 bg-blue-500 text-white rounded shadow-lg hover:bg-blue-600 transition duration-300"
+              onClick={handleNextQuiz}
+            >
+              次へ進む
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
