@@ -6,7 +6,7 @@ function Header() {
     <header className="flex p-5 justify-between items-center bg-gradient-to-r from-yellow-500 to-purple-600">
       <div>
         <h1 className="text-xl sm:text-3xl font-extrabold text-white">
-          <Link href={"/"}>魔神の挑戦状</Link>
+          <Link href={"/"}>🧀🐮魔神クエスト</Link>
         </h1>
       </div>
       <div>

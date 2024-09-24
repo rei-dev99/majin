@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="p-4 bg-gradient-to-r from-yellow-500 to-purple-600">
       <div className="text-center text-white text-sm md:text-base flex justify-center items-center">
-        <span className="mr-2">©2024 魔神の王国 - reicode</span>
+        <span className="mr-2">©2024 🧀🐮魔神クエスト</span>
         <Image
           src={"/rei.png"}
           alt={"reiの画像"}
