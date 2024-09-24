@@ -1,7 +1,7 @@
 # 🧀🐮魔神クエスト
 このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームです。
 
-![majin-image](https://github.com/user-attachments/assets/9fbbd777-5c41-488d-a550-bf8ca345af38)
+![majin-top](https://github.com/user-attachments/assets/5b449d42-42bb-437b-84e4-a6b95df8bf7f)
 
 ## サービスURL
 https://majin-r821.vercel.app/
