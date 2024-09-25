@@ -125,7 +125,14 @@ export default function QuizPage() {
             <h2 className="text-xl font-bold">答えと解説</h2>
             <p className="text-lg mt-4">正解は: 「{member.answer}」</p>
             <p className="text-lg">{member.description}</p>
-            <div className="mt-4 text-right">
+            <div className="mt-4 text-right flex gap-2 justify-center md:justify-end">
+              <a
+                href={member.times}
+                target="_blank"
+                className="p-2 bg-green-500 text-white rounded shadow-lg hover:bg-green-600 transition duration-300"
+              >
+                timesを見る
+              </a>
               <a
                 href={`https://twitter.com/intent/tweet?url=https://majin-r821.vercel.app/&text=${encodeURIComponent(
                   `魔神の挑戦状「${member.name}」のクイズをクリアしたぞ！\n#魔神クエスト\n`
