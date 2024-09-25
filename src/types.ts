@@ -8,6 +8,7 @@ export type Members = {
   option2: string;
   option3: string;
   picture: string;
+  times: string;
   createdAt: string;
 };
 
