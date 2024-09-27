@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,21 +19,23 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "🧀🐮魔神クエスト",
-  description: "このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームです。",
+  description:
+    "このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームです。",
   openGraph: {
-    title: '🧀🐮魔神クエスト',
-    description: 'このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームです。',
-    url: 'https://majin-r821.vercel.app/',
-    siteName: '🧀🐮魔神クエスト',
+    title: "🧀🐮魔神クエスト",
+    description:
+      "このアプリは魔神が独断と偏見で仲良しメンバーをクイズで紹介するプラットフォームです。",
+    url: "https://majin-r821.vercel.app/",
+    siteName: "🧀🐮魔神クエスト",
     images: [
       {
-        url: 'https://github.com/user-attachments/assets/5b449d42-42bb-437b-84e4-a6b95df8bf7f',
+        url: "https://github.com/user-attachments/assets/5b449d42-42bb-437b-84e4-a6b95df8bf7f",
         width: 1200,
         height: 630,
       },
     ],
-    locale: 'ja_JP',
-    type: 'website',
+    locale: "ja_JP",
+    type: "website",
   },
 };
 
@@ -46,7 +50,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />
       </body>
     </html>
