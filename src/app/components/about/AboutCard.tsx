@@ -1,4 +1,9 @@
-const AboutCard = ({ title, content }) => {
+type AboutCardProps = {
+  title: string;
+  content: string;
+}
+
+const AboutCard: React.FC<AboutCardProps> = ({ title, content }) => {
   return (
     <div className="bg-white p-4 rounded shadow-md w-full md:w-1/3">
       <h2 className="text-xl md:text-2xl font-semibold text-purple-700">
